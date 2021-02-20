@@ -1,0 +1,57 @@
+# This command creates an object named dice with 6 sides.
+die <-c(1:6)
+
+
+# The argument size =2 creates two dice.To change the number of dice,change the size .This builds a 
+ sample (die,size=2)
+
+ sample(die, size=2, replace =TRUE)
+ 
+ # This function ensures two dice are rolled and summed.Replaced =true allows you to set sampling with
+ #The problem is this will not rerun to create a new roll of the dice.Each roll will yield the same
+dice2 <- sample(die, size=2, replace=TRUE)
+dice2
+sum(dice2)
+
+
+
+#THis function allows you to simulate rolling
+roll <- function() {
+  die <- 1:6
+  dice <- sample(die, size = 2, replace = TRUE)
+  sum(dice)
+  
+}
+roll()
+
+# Now you can make a second roll function in which you change the name die to bones,
+roll2 <- function(bones = 1:6) {
+  dice <- sample(bones, size = 2, replace = TRUE)
+  sum(dice)
+}
+roll2(bones = 1:8)
+
+roll2(bones =1:12)
+
+roll2(bones =1:9)
+
+
+#I am going create a graph of the roll of my dice using the ggplot2 package
+install.packages("ggplot2")
+library("ggplot2")
+
+#Now I want to see the result of my 1000 rolls
+rolls <- replicate(10000, roll())
+qplot(rolls, binwidth = 1)  
+
+#To add weight to your dice, add a prob argument.
+roll <- function() {
+  die <- 1:6
+  dice <- sample(die, size = 2, replace = TRUE, 
+                 prob = c(1/8, 1/8, 1/8, 1/8, 1/8, 3/8))
+  sum(dice)
+}
+rolls <- replicate(10000, roll())
+qplot(rolls, binwidth = 1)
+
+
