@@ -23,6 +23,15 @@ roll <- function() {
   
 }
 roll()
+roll2 <- function(bones = 1:6,numberofdice) {
+  dice <- sample(bones, size = numberofdice, replace = TRUE)
+  sum(dice)
+}
+roll2(bones = 1:8,numberofdice = 4)
+
+roll2(bones =1:12,numberofdice = 10)
+
+roll2(bones =1:9,numberofdice = 20)
 
 # Now you can make a second roll function in which you change the name die to bones,
 roll2 <- function(bones = 1:6) {
